@@ -1,7 +1,7 @@
 <template>
     <HeaderPage />
     <div class="homePage">
-        <h1>Welcome to the Home Page</h1>
+        <h1>Welcome {{ name }} to the Home Page</h1>
         <p>This is a simple home page built with Vue.js.</p>
     </div>
 </template>
@@ -10,12 +10,18 @@
 import HeaderPage from './Header.vue';
 export default {
     name: 'HomePage',
+    data() {
+        return {
+            name:'',
+        };
+    },
     components: {
         HeaderPage
     },
     mounted(){
-        console.warn("mounted")
         let userInfo = localStorage.getItem('user-info');
+        this.name = JSON.parse(userInfo).name;
+        console.warn(this.name);
         if(!userInfo) {
             this.$router.push('/signup');
         } else {

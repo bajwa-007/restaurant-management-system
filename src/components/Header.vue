@@ -9,6 +9,7 @@
             <router-link to="/Manage" class="nav-link">Manage</router-link>
             <router-link to="/about" class="nav-link">About</router-link>
             <router-link to="/contact" class="nav-link">Contact</router-link>
+            <button class="logout" @click="handleLogout">Logout</button>
         </nav>
     </header>
 </template>
@@ -16,6 +17,15 @@
 <script>
 export default {
     name: 'HeaderPage',
+    methods:{
+        handleLogout() {
+            // Handle logout logic here
+            console.log('User logged out');
+            localStorage.clear();
+            // Redirect to login page or perform other actions
+            this.$router.push('/login');
+        }
+    }
 }
 </script>
 
@@ -42,6 +52,7 @@ export default {
 .title {
     font-size: 1.5rem;
     font-weight: bold;
+    color: #fff;
 }
 
 .nav {
@@ -58,5 +69,16 @@ export default {
 
 .nav-link:hover {
     color: #42b983;
+}
+.logout {
+    background: #42b983;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.2s;
+}
+.logout:hover {
+    background: #38a169;
 }
 </style>

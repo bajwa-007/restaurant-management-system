@@ -1,4 +1,5 @@
 <template>
+    <Header />
     <div class="manage-restaurant">
         <h1>Manage Restaurant</h1>
         <form @submit.prevent="saveRestaurant">
@@ -25,6 +26,8 @@
 </template>
 
 <script>
+import Header from './Header.vue';
+
 export default {
     name: 'ManageRestaurant',
     data() {
@@ -38,11 +41,22 @@ export default {
             message: ''
         };
     },
+    components: {
+        Header,
+    },
     methods: {
         saveRestaurant() {
             // Simulate API call
             this.message = 'Restaurant details saved successfully!';
             // In real app, send `this.restaurant` to backend here
+        }
+    },
+    mounted(){
+        let userInfo = localStorage.getItem('user-info');
+        if(!userInfo) {
+            this.$router.push('/signup');
+        } else {
+            console.warn("No user info found in localStorage.");
         }
     }
 };

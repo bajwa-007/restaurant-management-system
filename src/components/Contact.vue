@@ -50,6 +50,14 @@ export default {
             this.form.message = "";
         },
     },
+    mounted(){
+        let userInfo = localStorage.getItem('user-info');
+        if(!userInfo) {
+            this.$router.push('/signup');
+        } else {
+            console.warn("No user info found in localStorage.");
+        }
+    }
 };
 </script>
 
